@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\..\MorgenApp\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace MVVMCore;
+﻿namespace WindowsAppCoreLib;
 
 public class BaseViewModel : IObservableModel
 {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MVVMCore;
+namespace WindowsAppCoreLib;
 
 public abstract class IObservableModel : INotifyPropertyChanged
 {
