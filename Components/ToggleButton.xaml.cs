@@ -33,7 +33,7 @@ namespace WindowsAppCoreLib.Components
             set => SetValue(IconProperty, value);
         }
 
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(bool), typeof(ToggleButton), new PropertyMetadata(null));
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register("Value", typeof(bool), typeof(ToggleButton));
 
         public bool Value
         {
@@ -60,23 +60,5 @@ namespace WindowsAppCoreLib.Components
         }
 
         public SolidColorBrush InactiveColor => new(Color.FromArgb(80, 255, 255, 255));
-
-        public static bool CheckIf(MouseEventArgs ev, out ToggleButton? button)
-        {
-            button = null;
-            if (ev.OriginalSource is not Image img)
-                return false;
-
-            if (img.Parent is not Border brd)
-                return false;
-
-            if (brd.Parent is ToggleButton btn)
-            {
-                button = btn;
-                return true;
-            }
-
-            return false;
-        }
     }
 }

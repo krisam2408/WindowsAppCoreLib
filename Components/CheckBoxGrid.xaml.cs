@@ -24,8 +24,6 @@ namespace WindowsAppCoreLib.Components
         public static GridLength CheckWidth => new(m_checkWidth);
         public static GridLength ZeroWidth => new(0);
 
-        public ICommand ToggleValueCommand => new DelegateCommand(ToggleValue);
-
         public CheckBoxGrid()
         {
             InitializeComponent();
@@ -87,9 +85,6 @@ namespace WindowsAppCoreLib.Components
             set => SetValue(ValueProperty, value);
         }
 
-        private void ToggleValue(object? e)
-        {
-            Value = !Value;
-        }
+        public ICommand ToggleValueCommand => new DelegateCommand((e) => Value = !Value);
     }
 }
