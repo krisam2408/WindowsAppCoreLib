@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="WindowsAppCoreLib.Components.CheckBoxGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WindowsAppCoreLib.Components"
+             xmlns:c="clr-namespace:WindowsAppCoreLib"
+             xmlns:cc="clr-namespace:WindowsAppCoreLib.Converter"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <cc:BoolToHiddenVisibility x:Key="B2H" />
+        <cc:NullImage x:Key="NullImg" />
+        <Style x:Key="Checker" TargetType="Border">
+            <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CheckBoxGrid}}, Path=CheckerBackground}" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Panel.ZIndex" Value="0" />
+            <Setter Property="Margin" Value="0,-6,0,0" />
+            <Setter Property="Height" Value="16" />
+            <Setter Property="Width" Value="16" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CheckBoxGrid}}, Path=CheckerBorder}" />
+                </Trigger>
+                <DataTrigger Binding="{Binding ElementName=TickCheck, Path=IsMouseOver}" Value="True">
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CheckBoxGrid}}, Path=CheckerBorder}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="Ticket" TargetType="Image">
+            <Setter Property="Panel.ZIndex" Value="1" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="24" />
+            <Setter Property="Margin" Value="2,-2,0,0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Height" Value="32" />
+                    <Setter Property="Width" Value="26" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CheckBoxGrid}}, Path=CheckWidth}" />
+            <ColumnDefinition Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CheckBoxGrid}}, Path=Gap}" />
+            <ColumnDefinition Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CheckBoxGrid}}, Path=ContentWidth}" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0">
+            <Grid
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+                <Border Style="{StaticResource Checker}"
+                    c:Mouse.LeftReleaseCommand="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:CheckBoxGrid}}, Path=ToggleValueCommand}"/>
+                <Image x:Name="TickCheck"
+                   Source="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:CheckBoxGrid}}, Path=TickIcon, Converter={StaticResource NullImg}}"
+                   Style="{StaticResource Ticket}"
+                   Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CheckBoxGrid}}, Path=Value, Converter={StaticResource B2H}}"
+                   c:Mouse.LeftReleaseCommand="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:CheckBoxGrid}}, Path=ToggleValueCommand}"/>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="2">
+            <TextBlock
+                Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CheckBoxGrid}}, Path=Text}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

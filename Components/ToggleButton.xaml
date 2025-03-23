@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="WindowsAppCoreLib.Components.ToggleButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WindowsAppCoreLib.Components"
+             xmlns:c="clr-namespace:WindowsAppCoreLib"
+             xmlns:cv="clr-namespace:WindowsAppCoreLib.Converter"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <cv:SolidColorAlpha x:Key="Alpha" />
+        <Style x:Key="ImgBorderBtn" TargetType="Border">
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ToggleButton}}, Path=InactiveColor}" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ToggleButton}}, Path=Value}" Value="True">
+                    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:ToggleButton}}, Path=Idle}" />
+                    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ToggleButton}}, Path=Idle}" />
+                </DataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding ElementName=Btn, Path=IsMouseOver}" Value="True"/>
+                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ToggleButton}}, Path=Value}" Value="False" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:ToggleButton}}, Path=InactiveColor, Converter={StaticResource Alpha}, ConverterParameter=30}" />
+                    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ToggleButton}}, Path=InactiveColor, Converter={StaticResource Alpha}, ConverterParameter=30}" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding ElementName=Btn, Path=IsMouseOver}" Value="True"/>
+                        <Condition Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ToggleButton}}, Path=Value}" Value="True" />
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:ToggleButton}}, Path=Hover}" />
+                    <Setter Property="BorderBrush" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ToggleButton}}, Path=Hover}" />
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Border
+        x:Name="Btn"
+        Style="{StaticResource ImgBorderBtn}"
+        c:Mouse.LeftReleaseCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ToggleButton}}, Path=ToggleValueCommand}">
+        <Image Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ToggleButton}}, Path=Icon}" />
+    </Border>
+</UserControl>
