@@ -2,27 +2,26 @@
 using System.Windows;
 using System.Windows.Data;
 
-namespace WindowsAppCoreLib.Converter
+namespace WindowsAppCoreLib.Converter;
+
+[ValueConversion(typeof(bool), typeof(Visibility))]
+public sealed class BoolToHiddenVisibility : IValueConverter
 {
-    [ValueConversion(typeof(bool), typeof(Visibility))]
-    public sealed class BoolToHiddenVisibility : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            bool b = (bool)value;
-            if(b)
-                return Visibility.Visible;
-            return Visibility.Hidden;
-        }
+        bool b = (bool)value;
+        if(b)
+            return Visibility.Visible;
+        return Visibility.Hidden;
+    }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            Visibility v = (Visibility)value;
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        Visibility v = (Visibility)value;
 
-            if (v == Visibility.Visible)
-                return true;
+        if (v == Visibility.Visible)
+            return true;
 
-            return false;
-        }
+        return false;
     }
 }
