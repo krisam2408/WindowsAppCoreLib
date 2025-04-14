@@ -9,7 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <cc:NullImage x:Key="NullImg" />
+        <cc:NullValue x:Key="Null" />
         <Style x:Key="ImgBorderBtn" TargetType="Border">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -28,6 +28,6 @@
     </UserControl.Resources>
     <Border Style="{StaticResource ImgBorderBtn}"
     c:Mouse.LeftReleaseCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:IconButton}}, Path=Command}">
-        <Image Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:IconButton}}, Path=Icon, Converter={StaticResource NullImg}}" />
+        <Image Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:IconButton}}, Path=Icon, Converter={StaticResource Null}}" />
     </Border>
 </UserControl>
