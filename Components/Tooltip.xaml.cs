@@ -38,5 +38,12 @@ namespace WindowsAppCoreLib.Components
             get => (Brush)GetValue(BorderBackgroundProperty);
             set => SetValue(BorderBackgroundProperty, value);
         }
+
+        public static readonly DependencyProperty LinesProperty = DependencyProperty.Register("Lines", typeof(int), typeof(Tooltip), new PropertyMetadata(1));
+        public int Lines
+        {
+            get => (int)GetValue(LinesProperty);
+            set => SetValue(LinesProperty, value);
+        }
     }
 }

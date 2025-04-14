@@ -10,6 +10,7 @@
     <UserControl.Resources>
         <cv:NumSum x:Key="Sum" />
         <cv:BoolToHiddenVisibility x:Key="B2H" />
+        <cv:StringFormat x:Key="PointToPerc" />
 
         <RadialGradientBrush x:Key="HandleDonut">
             <GradientStop Color="#000000" Offset="1"/>
@@ -64,7 +65,7 @@
             c:Mouse.DragCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Slider}}, Path=DragCommand}"            
             Panel.ZIndex="1" />
         <local:Tooltip
-            TextContent="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Slider}}, Path=Value}"
+            TextContent="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Slider}}, Path=Value, Converter={StaticResource PointToPerc}, ConverterParameter='([0-9]?,) %'}"
             Canvas.Top="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Slider}}, Path=HandlePosition.Y, Converter={StaticResource Sum}, ConverterParameter=-20}"
             Canvas.Left="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Slider}}, Path=HandlePosition.X, Converter={StaticResource Sum}, ConverterParameter=20}"
             Visibility="Visible"
