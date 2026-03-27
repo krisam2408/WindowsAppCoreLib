@@ -10,4 +10,8 @@
 		<FrameworkReference Include="Microsoft.WindowsDesktop.App.WPF" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\Aide\Aide\Aide.csproj" />
+	</ItemGroup>
+
 </Project>

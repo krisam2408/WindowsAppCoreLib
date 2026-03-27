@@ -1,18 +1,16 @@
 ﻿using System.Globalization;
+using System.Windows;
 using System.Windows.Data;
-using System.Windows.Media;
 
 namespace WindowsAppCoreLib.Converter;
 
-[ValueConversion(typeof(string), typeof(ImageSource))]
-public sealed class StringToImage : IValueConverter
+public sealed class NullValue : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        throw new NotImplementedException();
-        string str = (string)value;
-
-        return null;
+        if(value is null)
+            return DependencyProperty.UnsetValue;
+        return value;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

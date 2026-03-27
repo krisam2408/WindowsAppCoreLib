@@ -3,7 +3,7 @@ using System.Windows;
 
 namespace WindowsAppCoreLib;
 
-public class Mouse
+public sealed class Mouse
 {
     #region Enable Triggers
     public static readonly DependencyProperty EnableTriggersProperty = DependencyProperty.RegisterAttached("EnableTriggers", typeof(bool), typeof(Mouse), new FrameworkPropertyMetadata(false, new PropertyChangedCallback(EnableTriggersChanged)));

@@ -9,7 +9,7 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <cc:BoolToHiddenVisibility x:Key="B2H" />
-        <cc:NullImage x:Key="NullImg" />
+        <cc:NullValue x:Key="Null" />
         <Style x:Key="Checker" TargetType="Border">
             <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CheckBoxGrid}}, Path=CheckerBackground}" />
             <Setter Property="CornerRadius" Value="4" />
@@ -59,7 +59,7 @@
                 <Border Style="{StaticResource Checker}"
                     c:Mouse.LeftReleaseCommand="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:CheckBoxGrid}}, Path=ToggleValueCommand}"/>
                 <Image x:Name="TickCheck"
-                   Source="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:CheckBoxGrid}}, Path=TickIcon, Converter={StaticResource NullImg}}"
+                   Source="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:CheckBoxGrid}}, Path=TickIcon, Converter={StaticResource Null}}"
                    Style="{StaticResource Ticket}"
                    Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CheckBoxGrid}}, Path=Value, Converter={StaticResource B2H}}"
                    c:Mouse.LeftReleaseCommand="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type local:CheckBoxGrid}}, Path=ToggleValueCommand}"/>
